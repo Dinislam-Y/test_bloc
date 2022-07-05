@@ -37,17 +37,19 @@ class UsersListWidget extends StatelessWidget {
             physics: const NeverScrollableScrollPhysics(),
             itemCount: state.loadedUsers.length,
             itemBuilder: (context, index) {
+              final _user = state.loadedUsers[index];
+
               return ListTile(
                 title: Column(
                   children: [
-                    Text('${state.loadedUsers[index].id}'),
+                    Text('${_user.name} ${_user.username}'),
                   ],
                 ),
                 subtitle: RichText(
-                  text: const TextSpan(
+                  text: TextSpan(
                     children: [
                       TextSpan(
-                        text: 'The dog ',
+                        text: _user.username.toString(),
                       ),
                       TextSpan(
                         text: 'is a domesticated carnivore ',
@@ -59,10 +61,9 @@ class UsersListWidget extends StatelessWidget {
                   ),
                 ),
                 leading: Column(
-                  children: const [
-                    Text('ID'),
+                  children: [
+                    Text(_user.id.toString()),
                     Icon(Icons.person),
-                    Spacer(),
                   ],
                 ),
               );
